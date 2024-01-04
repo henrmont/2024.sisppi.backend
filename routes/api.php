@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\LinkController;
+use App\Http\Controllers\NotificationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +32,28 @@ Route::group(['middleware' => 'api', 'prefix' => 'account', 'namespace' => 'App\
 
     Route::post('create', [AccountController::class, 'create']);
     Route::get('get/{email}', [AccountController::class, 'getAccount']);
+
+});
+
+Route::group(['middleware' => 'api', 'prefix' => 'favorite', 'namespace' => 'App\Http\Controllers'], function ($router) {
+
+    Route::get('get/{id}', [FavoriteController::class, 'getFavorites']);
+    Route::post('create', [FavoriteController::class, 'createFavorite']);
+
+});
+
+Route::group(['middleware' => 'api', 'prefix' => 'link', 'namespace' => 'App\Http\Controllers'], function ($router) {
+
+    Route::get('all', [LinkController::class, 'getLinks']);
+
+});
+
+Route::group(['middleware' => 'api', 'prefix' => 'notification', 'namespace' => 'App\Http\Controllers'], function ($router) {
+
+    Route::get('flash', [NotificationController::class, 'getFlashNotifications']);
+    Route::get('unread', [NotificationController::class, 'getUnreadNotifications']);
+    Route::get('read', [NotificationController::class, 'setReadNotifications']);
+    Route::get('all', [NotificationController::class, 'getAllNotifications']);
 
 });
 

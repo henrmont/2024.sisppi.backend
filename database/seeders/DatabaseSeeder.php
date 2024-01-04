@@ -15,10 +15,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call([
-            UserSeeder::class
-        ]);
-
         User::create([
             'name' => 'Jorge Monteiro',
             'email' => 'jorge@teste.com',
@@ -26,6 +22,14 @@ class DatabaseSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
             'password' => Hash::make('123456'),
+        ]);
+
+        $this->call([
+            UserSeeder::class,
+            RolesAndPermissionsSeeder::class,
+            LinkSeeder::class,
+            NotificationSeeder::class,
+            FavoriteSeeder::class,
         ]);
     }
 }
