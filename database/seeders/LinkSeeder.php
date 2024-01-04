@@ -29,6 +29,13 @@ class LinkSeeder extends Seeder
                     'url'       => '/configuracoes',
                     'created_at'=> now(),
                     'updated_at'=> now()
+                ],
+                [
+                    'name'      => 'Usuários',
+                    'icon'      => 'people_alt',
+                    'url'       => '/usuarios',
+                    'created_at'=> now(),
+                    'updated_at'=> now()
                 ]
             ]
         );

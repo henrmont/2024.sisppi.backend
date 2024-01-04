@@ -17,6 +17,9 @@ class DatabaseSeeder extends Seeder
     {
         User::create([
             'name' => 'Jorge Monteiro',
+            'cell_phone' =>'65999520849',
+            'phone' => '6530255588',
+            'county_id' => rand(1,140),
             'email' => 'jorge@teste.com',
             'email_verified_at' => now(),
             'created_at' => now(),

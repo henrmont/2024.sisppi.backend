@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\LinkController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -54,6 +55,13 @@ Route::group(['middleware' => 'api', 'prefix' => 'notification', 'namespace' => 
     Route::get('unread', [NotificationController::class, 'getUnreadNotifications']);
     Route::get('read', [NotificationController::class, 'setReadNotifications']);
     Route::get('all', [NotificationController::class, 'getAllNotifications']);
+
+});
+
+Route::group(['middleware' => 'api', 'prefix' => 'users', 'namespace' => 'App\Http\Controllers'], function ($router) {
+
+    Route::get('get/all', [UserController::class, 'getUsers']);
+    Route::get('get/{id}', [UserController::class, 'getUser']);
 
 });
 
