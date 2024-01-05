@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Jorge Monteiro',
             'cell_phone' =>'65999520849',
             'phone' => '6530255588',
-            'county_id' => rand(1,140),
+            'county_id' => 1,
             'email' => 'jorge@teste.com',
             'email_verified_at' => now(),
             'created_at' => now(),
@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
             LinkSeeder::class,
             NotificationSeeder::class,
             FavoriteSeeder::class,
+            CountySeeder::class,
         ]);
     }
 }

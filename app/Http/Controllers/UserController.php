@@ -27,4 +27,14 @@ class UserController extends Controller
         ]);
 
     }
+
+    public function getEmptyManagerUsers(): JsonResponse {
+
+        $users = User::where('county_id',null)->get();
+
+        return response()->json([
+            "data" => $users
+        ]);
+
+    }
 }

@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
                 'name' => fake()->name(),
                 'cell_phone' =>'65999520849',
                 'phone' => '6530255588',
-                'county_id' => rand(1,140),
+                'county_id' => fake()->randomElement([null,rand(1,142)]),
                 'email' => fake()->unique()->safeEmail(),
                 'email_verified_at' => now(),
                 'created_at' => now(),

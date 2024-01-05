@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CountyController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\LinkController;
 use App\Http\Controllers\NotificationController;
@@ -62,6 +63,14 @@ Route::group(['middleware' => 'api', 'prefix' => 'users', 'namespace' => 'App\Ht
 
     Route::get('get/all', [UserController::class, 'getUsers']);
     Route::get('get/{id}', [UserController::class, 'getUser']);
+    Route::get('get/empty/manager', [UserController::class, 'getEmptyManagerUsers']);
+
+});
+
+Route::group(['middleware' => 'api', 'prefix' => 'counties', 'namespace' => 'App\Http\Controllers'], function ($router) {
+
+    Route::get('get/counties', [CountyController::class, 'getCounties']);
+    Route::get('get/county/{id}', [CountyController::class, 'getCounty']);
 
 });
 

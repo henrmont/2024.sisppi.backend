@@ -36,6 +36,13 @@ class LinkSeeder extends Seeder
                     'url'       => '/usuarios',
                     'created_at'=> now(),
                     'updated_at'=> now()
+                ],
+                [
+                    'name'      => 'Municípios',
+                    'icon'      => 'place',
+                    'url'       => '/municipios',
+                    'created_at'=> now(),
+                    'updated_at'=> now()
                 ]
             ]
         );
