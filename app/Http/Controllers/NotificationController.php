@@ -10,7 +10,7 @@ class NotificationController extends Controller
 {
     public function getFlashNotifications(): JsonResponse
     {
-        $notifications = Notification::where('user_id',auth()->user()->id)->where('unread',false)->orderBy('created_at','desc')->take(6)->get();
+        $notifications = Notification::where('user_id',auth()->user()->id)->orderBy('created_at','desc')->take(6)->get();
 
         return response()->json(['data' => $notifications]);
     }

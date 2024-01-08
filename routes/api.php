@@ -64,6 +64,8 @@ Route::group(['middleware' => 'api', 'prefix' => 'users', 'namespace' => 'App\Ht
     Route::get('get/all', [UserController::class, 'getUsers']);
     Route::get('get/{id}', [UserController::class, 'getUser']);
     Route::get('get/empty/manager', [UserController::class, 'getEmptyManagerUsers']);
+    Route::get('change/empty/manager/{id}', [UserController::class, 'changeEmptyManagerUser']);
+    Route::post('change/no/empty/manager', [UserController::class, 'changeNoEmptyManagerUser']);
 
 });
 
@@ -71,6 +73,9 @@ Route::group(['middleware' => 'api', 'prefix' => 'counties', 'namespace' => 'App
 
     Route::get('get/counties', [CountyController::class, 'getCounties']);
     Route::get('get/county/{id}', [CountyController::class, 'getCounty']);
+    Route::post('create/county', [CountyController::class, 'createCounty']);
+    Route::delete('delete/county/{id}', [CountyController::class, 'deleteCounty']);
+    Route::patch('update/county', [CountyController::class, 'updateCounty']);
 
 });
 
