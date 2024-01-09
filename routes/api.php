@@ -61,11 +61,14 @@ Route::group(['middleware' => 'api', 'prefix' => 'notification', 'namespace' => 
 
 Route::group(['middleware' => 'api', 'prefix' => 'users', 'namespace' => 'App\Http\Controllers'], function ($router) {
 
-    Route::get('get/all', [UserController::class, 'getUsers']);
-    Route::get('get/{id}', [UserController::class, 'getUser']);
+    Route::get('get/users', [UserController::class, 'getUsers']);
+    Route::get('get/user/{id}', [UserController::class, 'getUser']);
     Route::get('get/empty/manager', [UserController::class, 'getEmptyManagerUsers']);
     Route::get('change/empty/manager/{id}', [UserController::class, 'changeEmptyManagerUser']);
     Route::post('change/no/empty/manager', [UserController::class, 'changeNoEmptyManagerUser']);
+    Route::post('create/user', [UserController::class, 'createUser']);
+    Route::patch('update/user', [UserController::class, 'updateUser']);
+    Route::delete('delete/user/{id}', [UserController::class, 'deleteUser']);
 
 });
 
