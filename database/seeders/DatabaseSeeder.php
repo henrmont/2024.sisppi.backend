@@ -7,6 +7,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,10 +16,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
+        $supe_user = User::create([
             'name' => 'Jorge Monteiro',
             'cell_phone' =>'65999520849',
             'phone' => '6530255588',
+            'cpf'   => '80104010215',
             'county_id' => 1,
             'email' => 'jorge@teste.com',
             'email_verified_at' => now(),
@@ -35,5 +37,8 @@ class DatabaseSeeder extends Seeder
             FavoriteSeeder::class,
             CountySeeder::class,
         ]);
+
+        $role = Role::findByName('super admin');
+        $role->users()->attach($supe_user);
     }
 }

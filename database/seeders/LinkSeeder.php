@@ -32,7 +32,7 @@ class LinkSeeder extends Seeder
                 ],
                 [
                     'name'      => 'Usuários',
-                    'icon'      => 'people_alt',
+                    'icon'      => 'groups',
                     'url'       => '/usuarios',
                     'created_at'=> now(),
                     'updated_at'=> now()
@@ -41,6 +41,13 @@ class LinkSeeder extends Seeder
                     'name'      => 'Municípios',
                     'icon'      => 'place',
                     'url'       => '/municipios',
+                    'created_at'=> now(),
+                    'updated_at'=> now()
+                ],
+                [
+                    'name'      => 'Regras e permissões',
+                    'icon'      => 'rule',
+                    'url'       => '/regras',
                     'created_at'=> now(),
                     'updated_at'=> now()
                 ]

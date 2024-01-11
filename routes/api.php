@@ -6,7 +6,9 @@ use App\Http\Controllers\CountyController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\LinkController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\RoleAndPermissionController;
 use App\Http\Controllers\UserController;
+use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -62,6 +64,8 @@ Route::group(['middleware' => 'api', 'prefix' => 'notification', 'namespace' => 
 Route::group(['middleware' => 'api', 'prefix' => 'users', 'namespace' => 'App\Http\Controllers'], function ($router) {
 
     Route::get('get/users', [UserController::class, 'getUsers']);
+    Route::get('get/users/without/role/{id}', [UserController::class, 'getUsersWithoutRole']);
+    Route::get('get/users/without/permission/{id}', [UserController::class, 'getUsersWithoutPermission']);
     Route::get('get/user/{id}', [UserController::class, 'getUser']);
     Route::post('create/user', [UserController::class, 'createUser']);
     Route::patch('update/user', [UserController::class, 'updateUser']);
@@ -79,6 +83,23 @@ Route::group(['middleware' => 'api', 'prefix' => 'counties', 'namespace' => 'App
     Route::post('create/county', [CountyController::class, 'createCounty']);
     Route::delete('delete/county/{id}', [CountyController::class, 'deleteCounty']);
     Route::patch('update/county', [CountyController::class, 'updateCounty']);
+
+});
+
+Route::group(['middleware' => 'api', 'prefix' => 'roles', 'namespace' => 'App\Http\Controllers'], function ($router) {
+
+    Route::get('get/roles', [RoleAndPermissionController::class, 'getRoles']);
+    Route::get('get/permissions', [RoleAndPermissionController::class, 'getPermissions']);
+    Route::get('get/without/permissions/{id}', [RoleAndPermissionController::class, 'getWithoutPermissions']);
+    Route::get('get/role/{id}', [RoleAndPermissionController::class, 'getRole']);
+    Route::get('get/permission/{id}', [RoleAndPermissionController::class, 'getPermission']);
+    Route::post('create/role', [RoleAndPermissionController::class, 'createRole']);
+    Route::post('add/user/role', [RoleAndPermissionController::class, 'addUserRole']);
+    Route::delete('delete/user/role/{role}/{id}', [RoleAndPermissionController::class, 'deleteUserRole']);
+    Route::patch('update/role', [RoleAndPermissionController::class, 'updateRole']);
+    Route::delete('delete/role/{id}', [RoleAndPermissionController::class, 'deleteRole']);
+    Route::post('add/user/permission', [RoleAndPermissionController::class, 'addUserPermission']);
+    Route::delete('remove/user/permission/{permission}/{id}', [RoleAndPermissionController::class, 'removeUserPermission']);
 
 });
 

@@ -7,12 +7,76 @@ use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
     public function getUsers(): JsonResponse {
 
         $users = User::with(['county'])->orderBy('id', 'asc')->get();
+
+        return response()->json([
+            "data" => $users
+        ]);
+
+    }
+
+    public function getUsersWithoutRole($id): JsonResponse {
+
+        $role = Role::with(['users'])->find($id);
+        $allUsers = User::all();
+        $users = [];
+
+        foreach ($allUsers as $chv => $vlr) {
+            $perm = true;
+            foreach ($role->users as $item) {
+                if ($vlr['id'] == $item['id']) {
+                    $perm = false;
+                }
+            }
+
+            if ($perm) {
+                $users[$chv] = $vlr;
+            }
+        }
+
+        $users = array_values($users);
+
+        return response()->json([
+            "data" => $users
+        ]);
+
+    }
+
+    public function getUsersWithoutPermission($id): JsonResponse {
+
+        $permission = Permission::with(['users','roles.users'])->find($id);
+        $allUsers = User::all();
+        $users = [];
+
+        foreach ($allUsers as $chv => $vlr) {
+            $perm = true;
+            foreach ($permission->users as $item) {
+                if ($vlr['id'] == $item['id']) {
+                    $perm = false;
+                }
+            }
+
+            foreach ($permission->roles as $item) {
+                foreach ($item->users as $item_vlr) {
+                    if ($item_vlr['id'] == $vlr['id']) {
+                        $perm = false;
+                    }
+                }
+            }
+
+            if ($perm) {
+                $users[$chv] = $vlr;
+            }
+        }
+
+        $users = array_values($users);
 
         return response()->json([
             "data" => $users
