@@ -14,7 +14,7 @@ class UserController extends Controller
 {
     public function getUsers(): JsonResponse {
 
-        $users = User::with(['county'])->orderBy('id', 'asc')->get();
+        $users = User::with(['county','roles','permissions','roles.permissions'])->orderBy('id', 'asc')->get();
 
         return response()->json([
             "data" => $users
@@ -86,7 +86,7 @@ class UserController extends Controller
 
     public function getUser($id): JsonResponse {
 
-        $user = User::with(['county'])->find($id);
+        $user = User::with(['county','roles','permissions','roles.permissions'])->find($id);
 
         return response()->json([
             "data" => $user
