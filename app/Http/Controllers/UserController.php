@@ -94,6 +94,38 @@ class UserController extends Controller
 
     }
 
+    public function getUserRoles($id): JsonResponse {
+
+        $user = User::with(['roles','permissions','roles.permissions'])->find($id);
+        $roles = $user->roles;
+        $permissions = [];
+        $index = [];
+
+        foreach ($user->permissions as $vlr) {
+            array_push($permissions, $vlr);
+            array_push($index, $vlr->id);
+        }
+
+        foreach ($user->roles as $vlr) {
+            foreach ($vlr->permissions as $item) {
+                if (!in_array($item->id, $index)) {
+                    array_push($permissions, $item);
+                    array_push($index, $item->id);
+                }
+            }
+        }
+
+        $permissions = array_values($permissions);
+
+        return response()->json([
+            "data" => [
+                'roles'         => $roles,
+                'permissions'   => $permissions
+            ]
+        ]);
+
+    }
+
     public function getEmptyManagerUsers(): JsonResponse {
 
         $users = User::where('county_id',null)->get();

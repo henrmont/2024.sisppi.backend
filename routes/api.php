@@ -67,6 +67,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'users', 'namespace' => 'App\Ht
     Route::get('get/users/without/role/{id}', [UserController::class, 'getUsersWithoutRole']);
     Route::get('get/users/without/permission/{id}', [UserController::class, 'getUsersWithoutPermission']);
     Route::get('get/user/{id}', [UserController::class, 'getUser']);
+    Route::get('get/user/roles/{id}', [UserController::class, 'getUserRoles']);
     Route::post('create/user', [UserController::class, 'createUser']);
     Route::patch('update/user', [UserController::class, 'updateUser']);
     Route::delete('delete/user/{id}', [UserController::class, 'deleteUser']);
