@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 
 class AuthController extends Controller
 {
@@ -63,6 +64,37 @@ class AuthController extends Controller
     public function refresh()
     {
         return $this->respondWithToken(auth()->refresh());
+    }
+
+    /**
+     * Refresh a token.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function permissions() {
+
+        $user = User::with(['permissions','roles.permissions'])->find(auth()->user()->id);
+        $permissions = [];
+        $index = [];
+
+        foreach ($user->permissions as $vlr) {
+            array_push($permissions, $vlr->name);
+            array_push($index, $vlr->id);
+        }
+
+        foreach ($user->roles as $vlr) {
+            foreach ($vlr->permissions as $item) {
+                if (!in_array($item->id, $index)) {
+                    array_push($permissions, $item->name);
+                    array_push($index, $item->id);
+                }
+            }
+        }
+
+        $permissions = array_values($permissions);
+
+        return response()->json($permissions);
+
     }
 
     /**

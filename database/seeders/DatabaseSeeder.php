@@ -16,13 +16,26 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $supe_user = User::create([
+        $super_user = User::create([
             'name' => 'Jorge Monteiro',
             'cell_phone' =>'65999520849',
             'phone' => '6530255588',
             'cpf'   => '80104010215',
             'county_id' => 1,
             'email' => 'jorge@teste.com',
+            'email_verified_at' => now(),
+            'created_at' => now(),
+            'updated_at' => now(),
+            'password' => Hash::make('123456'),
+        ]);
+
+        $alt_user = User::create([
+            'name' => 'Usuário Teste',
+            'cell_phone' =>'65999520849',
+            'phone' => '6530255588',
+            'cpf'   => '80104010215',
+            'county_id' => 1,
+            'email' => 'teste@teste.com',
             'email_verified_at' => now(),
             'created_at' => now(),
             'updated_at' => now(),
@@ -38,7 +51,7 @@ class DatabaseSeeder extends Seeder
             CountySeeder::class,
         ]);
 
-        $role = Role::findByName('super admin');
-        $role->users()->attach($supe_user);
+        $role = Role::findByName('admin');
+        $role->users()->attach($super_user);
     }
 }

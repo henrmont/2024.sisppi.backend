@@ -29,6 +29,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
     Route::get('logout', [AuthController::class, 'logout']);
     Route::get('refresh', [AuthController::class, 'refresh']);
     Route::get('me', [AuthController::class, 'me']);
+    Route::get('permissions', [AuthController::class, 'permissions']);
 
 });
 

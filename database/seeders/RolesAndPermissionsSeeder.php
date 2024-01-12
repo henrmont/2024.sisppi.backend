@@ -19,19 +19,26 @@ class RolesAndPermissionsSeeder extends Seeder
         try {
             DB::beginTransaction();
 
-            $super_admin = Role::create([
-                'name'  => 'super admin',
+            $admin = Role::create([
+                'name'  => 'admin',
                 'guard_name' => 'api',
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
 
             $permissions = [
-                'usuario listar',
                 'usuario criar',
+                'usuario ver',
                 'usuario atualizar',
-                'usuario detalhar',
-                'usuario apagar',
+                'usuario deletar',
+                'municipio criar',
+                'municipio ver',
+                'municipio atualizar',
+                'municipio deletar',
+                'regra criar',
+                'regra ver',
+                'regra atualizar',
+                'regra deletar',
             ];
 
             foreach($permissions as $vlr) {
@@ -40,7 +47,7 @@ class RolesAndPermissionsSeeder extends Seeder
                     'guard_name' => 'api',
                     'created_at' => now(),
                     'updated_at' => now(),
-                ])->assignRole($super_admin);
+                ])->assignRole($admin);
             }
 
             DB::commit();

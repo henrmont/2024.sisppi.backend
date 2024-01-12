@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             User::create([
                 'name' => fake()->name(),
                 'cell_phone' =>'65999520849',
