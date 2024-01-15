@@ -39,6 +39,10 @@ class RolesAndPermissionsSeeder extends Seeder
                 'regra ver',
                 'regra atualizar',
                 'regra deletar',
+                'ano criar',
+                'ano ver',
+                'ano atualizar',
+                'ano deletar',
             ];
 
             foreach($permissions as $vlr) {

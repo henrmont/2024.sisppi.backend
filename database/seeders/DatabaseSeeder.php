@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
             'cell_phone' =>'65999520849',
             'phone' => '6530255588',
             'cpf'   => '80104010215',
-            'county_id' => 1,
+            'county_id' => rand(1,142),
             'email' => 'teste@teste.com',
             'email_verified_at' => now(),
             'created_at' => now(),
@@ -49,6 +49,7 @@ class DatabaseSeeder extends Seeder
             NotificationSeeder::class,
             FavoriteSeeder::class,
             CountySeeder::class,
+            ExerciseYearSeeder::class,
         ]);
 
         $role = Role::findByName('admin');

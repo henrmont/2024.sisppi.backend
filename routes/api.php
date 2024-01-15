@@ -3,6 +3,7 @@
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CountyController;
+use App\Http\Controllers\ExerciseYearController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\LinkController;
 use App\Http\Controllers\NotificationController;
@@ -102,6 +103,16 @@ Route::group(['middleware' => 'api', 'prefix' => 'roles', 'namespace' => 'App\Ht
     Route::delete('delete/role/{id}', [RoleAndPermissionController::class, 'deleteRole']);
     Route::post('add/user/permission', [RoleAndPermissionController::class, 'addUserPermission']);
     Route::delete('remove/user/permission/{permission}/{id}', [RoleAndPermissionController::class, 'removeUserPermission']);
+
+});
+
+Route::group(['middleware' => 'api', 'prefix' => 'exercise/years', 'namespace' => 'App\Http\Controllers'], function ($router) {
+
+    Route::get('get/exercise/years', [ExerciseYearController::class, 'getExerciseYears']);
+    Route::post('create/exercise/year', [ExerciseYearController::class, 'createExerciseYear']);
+    Route::patch('update/exercise/year', [ExerciseYearController::class, 'updateExerciseYear']);
+    Route::delete('delete/exercise/year/{id}', [ExerciseYearController::class, 'deleteExerciseYear']);
+    Route::get('validate/exercise/year/{id}', [ExerciseYearController::class, 'validateExerciseYear']);
 
 });
 

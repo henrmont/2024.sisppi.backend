@@ -50,6 +50,13 @@ class LinkSeeder extends Seeder
                     'url'       => '/regras',
                     'created_at'=> now(),
                     'updated_at'=> now()
+                ],
+                [
+                    'name'      => 'Anos de exercício e competências',
+                    'icon'      => 'calendar_month',
+                    'url'       => '/anos/de/exercicio',
+                    'created_at'=> now(),
+                    'updated_at'=> now()
                 ]
             ]
         );
