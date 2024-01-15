@@ -19,10 +19,11 @@ return new class extends Migration
             $table->integer('county_id')->nullable();
             $table->string('cpf')->nullable();
             $table->string('email')->unique();
-            $table->boolean('is_valid')->default(true);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->boolean('is_valid')->default(true);
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }

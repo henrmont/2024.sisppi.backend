@@ -14,7 +14,7 @@ class UserController extends Controller
 {
     public function getUsers(): JsonResponse {
 
-        $users = User::with(['county','roles','permissions','roles.permissions'])->orderBy('id', 'asc')->get();
+        $users = User::where('deleted_at',null)->with(['county','roles','permissions','roles.permissions'])->orderBy('id', 'asc')->get();
 
         return response()->json([
             "data" => $users
@@ -25,7 +25,7 @@ class UserController extends Controller
     public function getUsersWithoutRole($id): JsonResponse {
 
         $role = Role::with(['users'])->find($id);
-        $allUsers = User::all();
+        $allUsers = User::where('deleted_at',null)->get();
         $users = [];
 
         foreach ($allUsers as $chv => $vlr) {
@@ -52,7 +52,7 @@ class UserController extends Controller
     public function getUsersWithoutPermission($id): JsonResponse {
 
         $permission = Permission::with(['users','roles.users'])->find($id);
-        $allUsers = User::all();
+        $allUsers = User::where('deleted_at',null)->get();
         $users = [];
 
         foreach ($allUsers as $chv => $vlr) {
@@ -128,7 +128,7 @@ class UserController extends Controller
 
     public function getEmptyManagerUsers(): JsonResponse {
 
-        $users = User::where('county_id',null)->get();
+        $users = User::where('deleted_at',null)->where('county_id',null)->get();
 
         return response()->json([
             "data" => $users
@@ -141,9 +141,8 @@ class UserController extends Controller
             DB::beginTransaction();
 
             $user = User::with(['county'])->find($id);
-
             $user->county_id = null;
-
+            $user->updated_at = now();
             $user->save();
 
             Notification::create([
@@ -177,9 +176,8 @@ class UserController extends Controller
             DB::beginTransaction();
 
             $user = User::find($request->user_id);
-
             $user->county_id = $request->county_id;
-
+            $user->updated_at = now();
             $user->save();
 
             $user = User::with(['county'])->find($request->user_id);
@@ -252,7 +250,6 @@ class UserController extends Controller
             DB::beginTransaction();
 
             $user = User::find($request->id);
-
             $user->email = $request->email;
             $user->name = $request->name;
             $user->cpf = $request->cpf;
@@ -261,7 +258,6 @@ class UserController extends Controller
             $user->county_id = $request->county_id;
             $user->is_valid = $request->is_valid;
             $user->updated_at = now();
-
             $user->save();
 
             Notification::create([
@@ -289,7 +285,10 @@ class UserController extends Controller
             DB::beginTransaction();
 
             $user = User::find($id);
-            $user->delete();
+            $user->is_valid = false;
+            $user->deleted_at = now();
+            $user->updated_at = now();
+            $user->save();
 
             Notification::create([
                 'user_id'   => auth()->user()->id,
