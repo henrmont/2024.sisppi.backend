@@ -43,6 +43,10 @@ class RolesAndPermissionsSeeder extends Seeder
                 'ano ver',
                 'ano atualizar',
                 'ano deletar',
+                'competencia criar',
+                'competencia ver',
+                'competencia atualizar',
+                'competencia deletar',
             ];
 
             foreach($permissions as $vlr) {

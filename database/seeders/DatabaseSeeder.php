@@ -50,6 +50,7 @@ class DatabaseSeeder extends Seeder
             FavoriteSeeder::class,
             CountySeeder::class,
             ExerciseYearSeeder::class,
+            CompetenceSeeder::class,
         ]);
 
         $role = Role::findByName('admin');

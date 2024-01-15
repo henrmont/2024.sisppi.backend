@@ -5,12 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ExerciseYear extends Model
+class Competence extends Model
 {
     use HasFactory;
 
+    protected $table = 'competencies';
+
     protected $fillable = [
-        'exercise_year',
+        'competence',
         'is_valid',
         'deleted_at',
     ];

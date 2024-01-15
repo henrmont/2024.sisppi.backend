@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CompetenceController;
 use App\Http\Controllers\CountyController;
 use App\Http\Controllers\ExerciseYearController;
 use App\Http\Controllers\FavoriteController;
@@ -9,7 +10,6 @@ use App\Http\Controllers\LinkController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\RoleAndPermissionController;
 use App\Http\Controllers\UserController;
-use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -113,6 +113,14 @@ Route::group(['middleware' => 'api', 'prefix' => 'exercise/years', 'namespace' =
     Route::patch('update/exercise/year', [ExerciseYearController::class, 'updateExerciseYear']);
     Route::delete('delete/exercise/year/{id}', [ExerciseYearController::class, 'deleteExerciseYear']);
     Route::get('validate/exercise/year/{id}', [ExerciseYearController::class, 'validateExerciseYear']);
+
+});
+
+Route::group(['middleware' => 'api', 'prefix' => 'competencies', 'namespace' => 'App\Http\Controllers'], function ($router) {
+
+    Route::get('get/competencies', [CompetenceController::class, 'getCompetencies']);
+    Route::delete('delete/competence/{id}', [CompetenceController::class, 'deleteCompetence']);
+    Route::get('validate/competence/{id}', [CompetenceController::class, 'validateCompetence']);
 
 });
 
