@@ -64,6 +64,20 @@ class LinkSeeder extends Seeder
                     'url'       => '/procedimentos',
                     'created_at'=> now(),
                     'updated_at'=> now()
+                ],
+                [
+                    'name'      => 'Grupos, Subgrupos e Formas de organização',
+                    'icon'      => 'format_list_numbered',
+                    'url'       => '/grupos',
+                    'created_at'=> now(),
+                    'updated_at'=> now()
+                ],
+                [
+                    'name'      => 'Financiamentos e Modalidades',
+                    'icon'      => 'attach_money',
+                    'url'       => '/financiamentos/modalidades',
+                    'created_at'=> now(),
+                    'updated_at'=> now()
                 ]
             ]
         );

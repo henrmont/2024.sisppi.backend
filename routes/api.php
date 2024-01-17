@@ -6,10 +6,13 @@ use App\Http\Controllers\CompetenceController;
 use App\Http\Controllers\CountyController;
 use App\Http\Controllers\ExerciseYearController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\GroupController;
 use App\Http\Controllers\LinkController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\OrganizationFormController;
 use App\Http\Controllers\ProcedureController;
 use App\Http\Controllers\RoleAndPermissionController;
+use App\Http\Controllers\SubgroupController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -122,6 +125,24 @@ Route::group(['middleware' => 'api', 'prefix' => 'competencies', 'namespace' => 
     Route::get('get/competencies', [CompetenceController::class, 'getCompetencies']);
     Route::delete('delete/competence/{id}', [CompetenceController::class, 'deleteCompetence']);
     Route::get('validate/competence/{id}', [CompetenceController::class, 'validateCompetence']);
+
+});
+
+Route::group(['middleware' => 'api', 'prefix' => 'groups', 'namespace' => 'App\Http\Controllers'], function ($router) {
+
+    Route::get('get/groups', [GroupController::class, 'getGroups']);
+
+});
+
+Route::group(['middleware' => 'api', 'prefix' => 'subgroups', 'namespace' => 'App\Http\Controllers'], function ($router) {
+
+    Route::get('get/subgroups', [SubgroupController::class, 'getSubgroups']);
+
+});
+
+Route::group(['middleware' => 'api', 'prefix' => 'organization/forms', 'namespace' => 'App\Http\Controllers'], function ($router) {
+
+    Route::get('get/organization/forms', [OrganizationFormController::class, 'getOrganizationForms']);
 
 });
 

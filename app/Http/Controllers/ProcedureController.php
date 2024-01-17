@@ -6,6 +6,7 @@ use App\Models\Competence;
 use App\Models\Financing;
 use App\Models\Group;
 use App\Models\Modality;
+use App\Models\Notification;
 use App\Models\OrganizationForm;
 use App\Models\Procedure;
 use App\Models\Subgroup;
@@ -214,6 +215,7 @@ class ProcedureController extends Controller
                 DB::beginTransaction();
 
                 set_time_limit(0);
+
                 $handleCompetence = true;
                 foreach ($groups as $vlr) {
                     if ($handleCompetence) {
@@ -233,9 +235,7 @@ class ProcedureController extends Controller
                         'competence_id' => $competence->id,
                     ]);
                 }
-                unset($group);
 
-                set_time_limit(0);
                 foreach ($subgroups as $vlr) {
                     $group = Group::where('group_code',$vlr['group'])->get();
                     $subgroup = Subgroup::create([
@@ -245,9 +245,7 @@ class ProcedureController extends Controller
                         'competence_id' => $competence->id,
                     ]);
                 }
-                unset($group,$subgroup);
 
-                set_time_limit(0);
                 foreach ($organization_forms as $vlr) {
                     $group = Group::where('group_code',$vlr['group'])->get();
                     $subgroup = Subgroup::where('subgroup_code',$vlr['subgroup'])->get();
@@ -259,9 +257,7 @@ class ProcedureController extends Controller
                         'competence_id' => $competence->id,
                     ]);
                 }
-                unset($group,$subgroup,$organization_form);
 
-                set_time_limit(0);
                 foreach ($financings as $vlr) {
                     $financing = Financing::create([
                         'financing_code' => $vlr['financing_code'],
@@ -269,9 +265,7 @@ class ProcedureController extends Controller
                         'competence_id' => $competence->id,
                     ]);
                 }
-                unset($group,$subgroup,$organization_form,$financing);
 
-                set_time_limit(0);
                 foreach ($modalities as $vlr) {
                     $modality = Modality::create([
                         'modality_code' => $vlr['modality_code'],
@@ -279,9 +273,7 @@ class ProcedureController extends Controller
                         'competence_id' => $competence->id,
                     ]);
                 }
-                unset($group,$subgroup,$organization_form,$financing,$modality);
 
-                set_time_limit(0);
                 $modalities = Modality::all();
                 foreach ($procedures as $vlr) {
                     $group = Group::where('group_code',$vlr['group'])->get();
@@ -309,7 +301,12 @@ class ProcedureController extends Controller
                         'modality_code' => $procedureModalities,
                     ]);
                 }
-                unset($group,$subgroup,$organization_form,$financing,$modality,$procedure);
+
+                Notification::create([
+                    'user_id'   => auth()->user()->id,
+                    'title' => 'Importação de procedimentos',
+                    'content'   => 'Procedimentos importados com sucesso.',
+                ]);
 
                 DB::commit();
 

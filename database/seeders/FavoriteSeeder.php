@@ -16,24 +16,36 @@ class FavoriteSeeder extends Seeder
     {
         DB::table('favorites')->insert(
             [
-                [
-                    'user_id'   => 1,
-                    'link_id'   => 3,
-                    'created_at'=> now(),
-                    'updated_at'=> now()
-                ],
-                [
-                    'user_id'   => 1,
-                    'link_id'   => 4,
-                    'created_at'=> now(),
-                    'updated_at'=> now()
-                ],
-                [
-                    'user_id'   => 1,
-                    'link_id'   => 5,
-                    'created_at'=> now(),
-                    'updated_at'=> now()
-                ],
+                // [
+                //     'user_id'   => 1,
+                //     'link_id'   => 1,
+                //     'created_at'=> now(),
+                //     'updated_at'=> now()
+                // ],
+                // [
+                //     'user_id'   => 1,
+                //     'link_id'   => 2,
+                //     'created_at'=> now(),
+                //     'updated_at'=> now()
+                // ],
+                // [
+                //     'user_id'   => 1,
+                //     'link_id'   => 3,
+                //     'created_at'=> now(),
+                //     'updated_at'=> now()
+                // ],
+                // [
+                //     'user_id'   => 1,
+                //     'link_id'   => 4,
+                //     'created_at'=> now(),
+                //     'updated_at'=> now()
+                // ],
+                // [
+                //     'user_id'   => 1,
+                //     'link_id'   => 5,
+                //     'created_at'=> now(),
+                //     'updated_at'=> now()
+                // ],
                 [
                     'user_id'   => 1,
                     'link_id'   => 6,
@@ -43,6 +55,18 @@ class FavoriteSeeder extends Seeder
                 [
                     'user_id'   => 1,
                     'link_id'   => 7,
+                    'created_at'=> now(),
+                    'updated_at'=> now()
+                ],
+                [
+                    'user_id'   => 1,
+                    'link_id'   => 8,
+                    'created_at'=> now(),
+                    'updated_at'=> now()
+                ],
+                [
+                    'user_id'   => 1,
+                    'link_id'   => 9,
                     'created_at'=> now(),
                     'updated_at'=> now()
                 ]
