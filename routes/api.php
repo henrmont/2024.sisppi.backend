@@ -8,6 +8,7 @@ use App\Http\Controllers\ExerciseYearController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\LinkController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\ProcedureController;
 use App\Http\Controllers\RoleAndPermissionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -121,6 +122,12 @@ Route::group(['middleware' => 'api', 'prefix' => 'competencies', 'namespace' => 
     Route::get('get/competencies', [CompetenceController::class, 'getCompetencies']);
     Route::delete('delete/competence/{id}', [CompetenceController::class, 'deleteCompetence']);
     Route::get('validate/competence/{id}', [CompetenceController::class, 'validateCompetence']);
+
+});
+
+Route::group(['middleware' => 'api', 'prefix' => 'procedures', 'namespace' => 'App\Http\Controllers'], function ($router) {
+
+    Route::post('import/procedures', [ProcedureController::class, 'importProcedures']);
 
 });
 

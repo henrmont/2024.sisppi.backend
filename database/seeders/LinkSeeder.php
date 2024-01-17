@@ -57,6 +57,13 @@ class LinkSeeder extends Seeder
                     'url'       => '/anos/de/exercicio',
                     'created_at'=> now(),
                     'updated_at'=> now()
+                ],
+                [
+                    'name'      => 'Procedimentos',
+                    'icon'      => 'medical_services',
+                    'url'       => '/procedimentos',
+                    'created_at'=> now(),
+                    'updated_at'=> now()
                 ]
             ]
         );

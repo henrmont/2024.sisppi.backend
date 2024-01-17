@@ -39,6 +39,12 @@ class FavoriteSeeder extends Seeder
                     'link_id'   => 6,
                     'created_at'=> now(),
                     'updated_at'=> now()
+                ],
+                [
+                    'user_id'   => 1,
+                    'link_id'   => 7,
+                    'created_at'=> now(),
+                    'updated_at'=> now()
                 ]
             ]
         );
