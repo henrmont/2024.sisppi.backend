@@ -6,8 +6,10 @@ use App\Http\Controllers\CompetenceController;
 use App\Http\Controllers\CountyController;
 use App\Http\Controllers\ExerciseYearController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\FinancingController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\LinkController;
+use App\Http\Controllers\ModalityController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OrganizationFormController;
 use App\Http\Controllers\ProcedureController;
@@ -143,6 +145,18 @@ Route::group(['middleware' => 'api', 'prefix' => 'subgroups', 'namespace' => 'Ap
 Route::group(['middleware' => 'api', 'prefix' => 'organization/forms', 'namespace' => 'App\Http\Controllers'], function ($router) {
 
     Route::get('get/organization/forms', [OrganizationFormController::class, 'getOrganizationForms']);
+
+});
+
+Route::group(['middleware' => 'api', 'prefix' => 'financings', 'namespace' => 'App\Http\Controllers'], function ($router) {
+
+    Route::get('get/financings', [FinancingController::class, 'getFinancings']);
+
+});
+
+Route::group(['middleware' => 'api', 'prefix' => 'modalities', 'namespace' => 'App\Http\Controllers'], function ($router) {
+
+    Route::get('get/modalities', [ModalityController::class, 'getModalities']);
 
 });
 

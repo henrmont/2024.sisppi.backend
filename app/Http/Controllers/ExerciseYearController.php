@@ -12,7 +12,7 @@ class ExerciseYearController extends Controller
 {
     public function getExerciseYears(): JsonResponse {
 
-        $exercise_years = ExerciseYear::where('deleted_at',null)->orderBy('id', 'asc')->get();
+        $exercise_years = ExerciseYear::where('deleted_at',null)->orderBy('id', 'asc')->get(['id','exercise_year','is_valid']);
 
         return response()->json([
             "data" => $exercise_years

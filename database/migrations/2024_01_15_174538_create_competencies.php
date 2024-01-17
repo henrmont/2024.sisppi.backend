@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('competencies', function (Blueprint $table) {
             $table->id();
             $table->string('competence')->unique();
-            $table->boolean('is_valid')->default(true);
+            $table->boolean('is_valid')->default(false);
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
