@@ -163,6 +163,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'modalities', 'namespace' => 'A
 Route::group(['middleware' => 'api', 'prefix' => 'procedures', 'namespace' => 'App\Http\Controllers'], function ($router) {
 
     Route::post('import/procedures', [ProcedureController::class, 'importProcedures']);
+    Route::get('get/procedures', [ProcedureController::class, 'getProcedures']);
 
 });
 

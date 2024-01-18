@@ -193,9 +193,6 @@ class ProcedureController extends Controller
         return $data;
     }
 
-
-
-
     public function importProcedures(Request $request): JsonResponse {
 
         if (is_file($request->file('file'))) {
@@ -283,7 +280,7 @@ class ProcedureController extends Controller
                     $procedureModalities = [];
                     foreach ($modalities as $item) {
                         if (in_array($item->modality_code,$vlr['modalities'])) {
-                            array_push($procedureModalities, $item->id);
+                            array_push($procedureModalities, $item->modality_name);
                         }
                     }
 
@@ -321,6 +318,18 @@ class ProcedureController extends Controller
                 ]);
             }
         }
+
+    }
+
+    public function getProcedures(): JsonResponse {
+
+        $procedures = Procedure::with(['competence','financing','group','subgroup','organization_form'])->whereHas('competence', function($q) {
+            $q->where('is_valid', true);
+        })->orderBy('id', 'asc')->get();
+
+        return response()->json([
+            "data" => $procedures
+        ]);
 
     }
 }
