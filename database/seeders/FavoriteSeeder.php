@@ -46,12 +46,12 @@ class FavoriteSeeder extends Seeder
                 //     'created_at'=> now(),
                 //     'updated_at'=> now()
                 // ],
-                [
-                    'user_id'   => 1,
-                    'link_id'   => 6,
-                    'created_at'=> now(),
-                    'updated_at'=> now()
-                ],
+                // [
+                //     'user_id'   => 1,
+                //     'link_id'   => 6,
+                //     'created_at'=> now(),
+                //     'updated_at'=> now()
+                // ],
                 [
                     'user_id'   => 1,
                     'link_id'   => 7,
@@ -67,6 +67,12 @@ class FavoriteSeeder extends Seeder
                 [
                     'user_id'   => 1,
                     'link_id'   => 9,
+                    'created_at'=> now(),
+                    'updated_at'=> now()
+                ],
+                [
+                    'user_id'   => 1,
+                    'link_id'   => 10,
                     'created_at'=> now(),
                     'updated_at'=> now()
                 ]

@@ -20,6 +20,16 @@ class ExerciseYearController extends Controller
 
     }
 
+    public function getValidExerciseYears(): JsonResponse {
+
+        $exercise_years = ExerciseYear::where('deleted_at',null)->where('is_valid',true)->orderBy('id', 'asc')->get(['id','exercise_year','is_valid']);
+
+        return response()->json([
+            "data" => $exercise_years
+        ]);
+
+    }
+
     public function createExerciseYear(Request $request): JsonResponse {
         try {
             DB::beginTransaction();

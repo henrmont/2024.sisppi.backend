@@ -78,6 +78,13 @@ class LinkSeeder extends Seeder
                     'url'       => '/financiamentos/modalidades',
                     'created_at'=> now(),
                     'updated_at'=> now()
+                ],
+                [
+                    'name'      => 'Programação',
+                    'icon'      => 'checklist',
+                    'url'       => '/programacao',
+                    'created_at'=> now(),
+                    'updated_at'=> now()
                 ]
             ]
         );

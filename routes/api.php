@@ -13,6 +13,8 @@ use App\Http\Controllers\ModalityController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OrganizationFormController;
 use App\Http\Controllers\ProcedureController;
+use App\Http\Controllers\ProgramingController;
+use App\Http\Controllers\ProgramingProcedureController;
 use App\Http\Controllers\RoleAndPermissionController;
 use App\Http\Controllers\SubgroupController;
 use App\Http\Controllers\UserController;
@@ -115,6 +117,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'roles', 'namespace' => 'App\Ht
 Route::group(['middleware' => 'api', 'prefix' => 'exercise/years', 'namespace' => 'App\Http\Controllers'], function ($router) {
 
     Route::get('get/exercise/years', [ExerciseYearController::class, 'getExerciseYears']);
+    Route::get('get/valid/exercise/years', [ExerciseYearController::class, 'getValidExerciseYears']);
     Route::post('create/exercise/year', [ExerciseYearController::class, 'createExerciseYear']);
     Route::patch('update/exercise/year', [ExerciseYearController::class, 'updateExerciseYear']);
     Route::delete('delete/exercise/year/{id}', [ExerciseYearController::class, 'deleteExerciseYear']);
@@ -164,6 +167,26 @@ Route::group(['middleware' => 'api', 'prefix' => 'procedures', 'namespace' => 'A
 
     Route::post('import/procedures', [ProcedureController::class, 'importProcedures']);
     Route::get('get/procedures', [ProcedureController::class, 'getProcedures']);
+
+});
+
+Route::group(['middleware' => 'api', 'prefix' => 'programings', 'namespace' => 'App\Http\Controllers'], function ($router) {
+
+    Route::get('get/programings', [ProgramingController::class, 'getProgramings']);
+    Route::post('create/programing', [ProgramingController::class, 'createPrograming']);
+    Route::patch('update/programing', [ProgramingController::class, 'updatePrograming']);
+    Route::delete('delete/programing/{id}', [ProgramingController::class, 'deletePrograming']);
+    Route::get('validate/programing/{id}', [ProgramingController::class, 'validatePrograming']);
+
+});
+
+Route::group(['middleware' => 'api', 'prefix' => 'programing/procedures', 'namespace' => 'App\Http\Controllers'], function ($router) {
+
+    Route::get('get/programing/procedures/{id}', [ProgramingProcedureController::class, 'getProgramingProcedures']);
+    Route::post('add/programing/procedure', [ProgramingProcedureController::class, 'addProgramingProcedure']);
+    Route::patch('amount/programing/procedure', [ProgramingProcedureController::class, 'amountProgramingProcedure']);
+    Route::patch('type/programing/procedure', [ProgramingProcedureController::class, 'typeProgramingProcedure']);
+    Route::delete('remove/programing/procedure/{id}', [ProgramingProcedureController::class, 'removeProgramingProcedure']);
 
 });
 
