@@ -15,62 +15,62 @@ class CompetenceSeeder extends Seeder
         DB::table('competencies')->insert(
             [
                 [
-                    'competence'   => '01/2024',
+                    'name'   => '01/2024',
                     'created_at'=> now(),
                     'updated_at'=> now()
                 ],
                 [
-                    'competence'   => '02/2024',
+                    'name'   => '02/2024',
                     'created_at'=> now(),
                     'updated_at'=> now()
                 ],
                 [
-                    'competence'   => '03/2024',
+                    'name'   => '03/2024',
                     'created_at'=> now(),
                     'updated_at'=> now()
                 ],
                 [
-                    'competence'   => '04/2024',
+                    'name'   => '04/2024',
                     'created_at'=> now(),
                     'updated_at'=> now()
                 ],
                 [
-                    'competence'   => '05/2024',
+                    'name'   => '05/2024',
                     'created_at'=> now(),
                     'updated_at'=> now()
                 ],
                 [
-                    'competence'   => '06/2024',
+                    'name'   => '06/2024',
                     'created_at'=> now(),
                     'updated_at'=> now()
                 ],
                 [
-                    'competence'   => '07/2024',
+                    'name'   => '07/2024',
                     'created_at'=> now(),
                     'updated_at'=> now()
                 ],
                 [
-                    'competence'   => '08/2024',
+                    'name'   => '08/2024',
                     'created_at'=> now(),
                     'updated_at'=> now()
                 ],
                 [
-                    'competence'   => '09/2024',
+                    'name'   => '09/2024',
                     'created_at'=> now(),
                     'updated_at'=> now()
                 ],
                 [
-                    'competence'   => '10/2024',
+                    'name'   => '10/2024',
                     'created_at'=> now(),
                     'updated_at'=> now()
                 ],
                 [
-                    'competence'   => '11/2024',
+                    'name'   => '11/2024',
                     'created_at'=> now(),
                     'updated_at'=> now()
                 ],
                 [
-                    'competence'   => '12/2024',
+                    'name'   => '12/2024',
                     'created_at'=> now(),
                     'updated_at'=> now()
                 ]

@@ -11,8 +11,8 @@ class Financing extends Model
     use HasFactory;
 
     protected $fillable = [
-        'financing_code',
-        'financing_name',
+        'code',
+        'name',
         'competence_id',
         'is_valid',
         'deleted_at',

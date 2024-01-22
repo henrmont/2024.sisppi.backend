@@ -14,13 +14,13 @@ class ExerciseYearSeeder extends Seeder
     public function run(): void
     {
         $exercise_year = ExerciseYear::create([
-            'exercise_year' => 2023,
+            'name' => 2023,
             'created_at'=> now(),
             'updated_at'=> now()
         ]);
 
         $exercise_year = ExerciseYear::create([
-            'exercise_year' => 2024,
+            'name' => 2024,
             'created_at'=> now(),
             'updated_at'=> now()
         ]);

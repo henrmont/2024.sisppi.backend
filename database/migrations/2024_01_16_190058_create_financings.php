@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('financings', function (Blueprint $table) {
             $table->id();
-            $table->string('financing_code');
-            $table->string('financing_name');
+            $table->string('code');
+            $table->string('name');
             $table->integer('competence_id');
             $table->boolean('is_valid')->default(true);
             $table->timestamp('deleted_at')->nullable();

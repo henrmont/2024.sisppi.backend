@@ -13,8 +13,8 @@ class Modality extends Model
     protected $table = 'modalities';
 
     protected $fillable = [
-        'modality_code',
-        'modality_name',
+        'code',
+        'name',
         'competence_id',
         'is_valid',
         'deleted_at',

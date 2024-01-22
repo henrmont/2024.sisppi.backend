@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('programings', function (Blueprint $table) {
             $table->id();
-            $table->string('programing_name');
+            $table->string('name');
             $table->integer('exercise_year_id');
             $table->integer('county_id');
             $table->boolean('is_valid')->default(true);

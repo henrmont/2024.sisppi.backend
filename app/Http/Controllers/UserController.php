@@ -280,6 +280,35 @@ class UserController extends Controller
         }
     }
 
+    public function validateUser($id): JsonResponse {
+        try {
+            DB::beginTransaction();
+
+            $user = User::find($id);
+            $user->is_valid = !$user->is_valid;
+            $user->updated_at = now();
+            $user->save();
+
+            Notification::create([
+                'user_id'   => auth()->user()->id,
+                'title' => 'Validação de usuário',
+                'content'   => 'O usuário '.$user->name.' foi validada/invalidada com sucesso.',
+            ]);
+
+            DB::commit();
+
+            return response()->json([
+                "message" => 'Usuário validada/invalidada com sucesso.'
+            ]);
+        } catch(\Exception $e) {
+            DB::rollBack();
+
+            return response()->json([
+                "message" => 'Erro no sistema.'
+            ]);
+        }
+    }
+
     public function deleteUser($id): JsonResponse {
         try {
             DB::beginTransaction();

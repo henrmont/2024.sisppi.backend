@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('icon');
             $table->string('url');
+            $table->boolean('is_valid')->default(true);
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }

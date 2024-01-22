@@ -12,7 +12,7 @@ class CompetenceController extends Controller
 {
     public function getCompetencies(): JsonResponse {
 
-        $competencies = Competence::where('deleted_at',null)->orderBy('id', 'asc')->get(['id','competence','is_valid']);
+        $competencies = Competence::where('deleted_at',null)->orderBy('id', 'asc')->get(['id','name','is_valid']);
 
         return response()->json([
             "data" => $competencies

@@ -11,8 +11,8 @@ class Group extends Model
     use HasFactory;
 
     protected $fillable = [
-        'group_code',
-        'group_name',
+        'code',
+        'name',
         'competence_id',
         'is_valid',
         'deleted_at',

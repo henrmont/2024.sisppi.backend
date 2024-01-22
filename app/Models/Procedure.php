@@ -11,8 +11,8 @@ class Procedure extends Model
     use HasFactory;
 
     protected $fillable = [
-        'procedure_code',
-        'procedure_name',
+        'code',
+        'name',
         'organization_form_id',
         'subgroup_id',
         'group_id',

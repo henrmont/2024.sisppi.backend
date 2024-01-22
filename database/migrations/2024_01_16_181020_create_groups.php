@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('groups', function (Blueprint $table) {
             $table->id();
-            $table->string('group_code');
-            $table->string('group_name');
+            $table->string('code');
+            $table->string('name');
             $table->integer('competence_id');
             $table->boolean('is_valid')->default(true);
             $table->timestamp('deleted_at')->nullable();

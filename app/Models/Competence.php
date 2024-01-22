@@ -12,7 +12,7 @@ class Competence extends Model
     protected $table = 'competencies';
 
     protected $fillable = [
-        'competence',
+        'name',
         'is_valid',
         'deleted_at',
     ];

@@ -12,7 +12,7 @@ class ExerciseYearController extends Controller
 {
     public function getExerciseYears(): JsonResponse {
 
-        $exercise_years = ExerciseYear::where('deleted_at',null)->orderBy('id', 'asc')->get(['id','exercise_year','is_valid']);
+        $exercise_years = ExerciseYear::where('deleted_at',null)->orderBy('id', 'asc')->get(['id','name','is_valid']);
 
         return response()->json([
             "data" => $exercise_years
@@ -22,7 +22,7 @@ class ExerciseYearController extends Controller
 
     public function getValidExerciseYears(): JsonResponse {
 
-        $exercise_years = ExerciseYear::where('deleted_at',null)->where('is_valid',true)->orderBy('id', 'asc')->get(['id','exercise_year','is_valid']);
+        $exercise_years = ExerciseYear::where('deleted_at',null)->where('is_valid',true)->orderBy('id', 'asc')->get(['id','name','is_valid']);
 
         return response()->json([
             "data" => $exercise_years
@@ -35,13 +35,13 @@ class ExerciseYearController extends Controller
             DB::beginTransaction();
 
             $exercise_year = ExerciseYear::create([
-                'exercise_year'  => $request->exercise_year,
+                'name'  => $request->name,
             ]);
 
             Notification::create([
                 'user_id'   => auth()->user()->id,
                 'title' => 'Inclusão do ano de exercício',
-                'content'   => 'O ano de exercício '.$exercise_year->exercise_year.' foi criado com sucesso.',
+                'content'   => 'O ano de exercício '.$exercise_year->name.' foi criado com sucesso.',
             ]);
 
             DB::commit();
@@ -63,14 +63,14 @@ class ExerciseYearController extends Controller
             DB::beginTransaction();
 
             $exercise_year = ExerciseYear::find($request->id);
-            $exercise_year->exercise_year = $request->exercise_year;
+            $exercise_year->name = $request->name;
             $exercise_year->updated_at = now();
             $exercise_year->save();
 
             Notification::create([
                 'user_id'   => auth()->user()->id,
                 'title' => 'Atualização do ano de exercício',
-                'content'   => 'O ano de exercício '.$exercise_year->exercise_year.' foi atualizado com sucesso.',
+                'content'   => 'O ano de exercício '.$exercise_year->name.' foi atualizado com sucesso.',
             ]);
 
             DB::commit();
@@ -100,7 +100,7 @@ class ExerciseYearController extends Controller
             Notification::create([
                 'user_id'   => auth()->user()->id,
                 'title' => 'Exclusão do ano de exercício',
-                'content'   => 'O ano de exercício '.$exercise_year->exercise_year.' foi excluído com sucesso.',
+                'content'   => 'O ano de exercício '.$exercise_year->name.' foi excluído com sucesso.',
             ]);
 
             DB::commit();
@@ -129,7 +129,7 @@ class ExerciseYearController extends Controller
             Notification::create([
                 'user_id'   => auth()->user()->id,
                 'title' => 'Validação do ano de exercício',
-                'content'   => 'O ano de exercício '.$exercise_year->exercise_year.' foi validado/invalidado com sucesso.',
+                'content'   => 'O ano de exercício '.$exercise_year->name.' foi validado/invalidado com sucesso.',
             ]);
 
             DB::commit();

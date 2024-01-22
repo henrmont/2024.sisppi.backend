@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('organization_forms', function (Blueprint $table) {
             $table->id();
-            $table->string('organization_form_code');
-            $table->string('organization_form_name');
+            $table->string('code');
+            $table->string('name');
             $table->integer('subgroup_id');
             $table->integer('group_id');
             $table->integer('competence_id');

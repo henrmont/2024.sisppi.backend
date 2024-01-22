@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('favorites', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedBigInteger('link_id');
-            $table->foreign('link_id')->references('id')->on('links');
+            $table->integer('user_id');
+            $table->integer('link_id');
+            $table->boolean('is_valid')->default(true);
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }

@@ -11,8 +11,8 @@ class Subgroup extends Model
     use HasFactory;
 
     protected $fillable = [
-        'subgroup_code',
-        'subgroup_name',
+        'code',
+        'name',
         'group_id',
         'competence_id',
         'is_valid',

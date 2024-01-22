@@ -12,7 +12,7 @@ class Programing extends Model
     use HasFactory;
 
     protected $fillable = [
-        'programing_name',
+        'name',
         'exercise_year_id',
         'county_id',
         'is_valid',

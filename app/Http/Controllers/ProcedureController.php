@@ -216,10 +216,10 @@ class ProcedureController extends Controller
                 $handleCompetence = true;
                 foreach ($groups as $vlr) {
                     if ($handleCompetence) {
-                        $competence = Competence::where('competence',$vlr['competence'])->get();
+                        $competence = Competence::where('name',$vlr['competence'])->get();
                         if (count($competence) == 0) {
                             $competence = Competence::create([
-                                'competence' => $vlr['competence'],
+                                'name' => $vlr['competence'],
                                 'created_at'=> now(),
                                 'updated_at'=> now()
                             ]);
@@ -227,28 +227,28 @@ class ProcedureController extends Controller
                         $handleCompetence = false;
                     }
                     $group = Group::create([
-                        'group_code' => $vlr['group_code'],
-                        'group_name' => $vlr['group_name'],
+                        'code' => $vlr['group_code'],
+                        'name' => $vlr['group_name'],
                         'competence_id' => $competence->id,
                     ]);
                 }
 
                 foreach ($subgroups as $vlr) {
-                    $group = Group::where('group_code',$vlr['group'])->get();
+                    $group = Group::where('code',$vlr['group'])->get();
                     $subgroup = Subgroup::create([
-                        'subgroup_code' => $vlr['subgroup_code'],
-                        'subgroup_name' => $vlr['subgroup_name'],
+                        'code' => $vlr['subgroup_code'],
+                        'name' => $vlr['subgroup_name'],
                         'group_id' => $group[0]->id,
                         'competence_id' => $competence->id,
                     ]);
                 }
 
                 foreach ($organization_forms as $vlr) {
-                    $group = Group::where('group_code',$vlr['group'])->get();
-                    $subgroup = Subgroup::where('subgroup_code',$vlr['subgroup'])->get();
+                    $group = Group::where('code',$vlr['group'])->get();
+                    $subgroup = Subgroup::where('code',$vlr['subgroup'])->get();
                     $organization_form = OrganizationForm::create([
-                        'organization_form_code' => $vlr['organization_form_code'],
-                        'organization_form_name' => $vlr['organization_form_name'],
+                        'code' => $vlr['organization_form_code'],
+                        'name' => $vlr['organization_form_name'],
                         'group_id' => $group[0]->id,
                         'subgroup_id' => $subgroup[0]->id,
                         'competence_id' => $competence->id,
@@ -257,36 +257,36 @@ class ProcedureController extends Controller
 
                 foreach ($financings as $vlr) {
                     $financing = Financing::create([
-                        'financing_code' => $vlr['financing_code'],
-                        'financing_name' => $vlr['financing_name'],
+                        'code' => $vlr['financing_code'],
+                        'name' => $vlr['financing_name'],
                         'competence_id' => $competence->id,
                     ]);
                 }
 
                 foreach ($modalities as $vlr) {
                     $modality = Modality::create([
-                        'modality_code' => $vlr['modality_code'],
-                        'modality_name' => $vlr['modality_name'],
+                        'code' => $vlr['modality_code'],
+                        'name' => $vlr['modality_name'],
                         'competence_id' => $competence->id,
                     ]);
                 }
 
                 $modalities = Modality::all();
                 foreach ($procedures as $vlr) {
-                    $group = Group::where('group_code',$vlr['group'])->get();
-                    $subgroup = Subgroup::where('subgroup_code',$vlr['subgroup'])->get();
-                    $organization_form = OrganizationForm::where('organization_form_code',$vlr['organization_form'])->get();
-                    $financing = Financing::where('financing_code',$vlr['financing'])->get();
+                    $group = Group::where('code',$vlr['group'])->get();
+                    $subgroup = Subgroup::where('code',$vlr['subgroup'])->get();
+                    $organization_form = OrganizationForm::where('code',$vlr['organization_form'])->get();
+                    $financing = Financing::where('code',$vlr['financing'])->get();
                     $procedureModalities = [];
                     foreach ($modalities as $item) {
-                        if (in_array($item->modality_code,$vlr['modalities'])) {
-                            array_push($procedureModalities, $item->modality_name);
+                        if (in_array($item->code,$vlr['modalities'])) {
+                            array_push($procedureModalities, $item->name);
                         }
                     }
 
                     $procedure = Procedure::create([
-                        'procedure_code' => $vlr['procedure_code'],
-                        'procedure_name' => $vlr['procedure_name'],
+                        'code' => $vlr['procedure_code'],
+                        'name' => $vlr['procedure_name'],
                         'organization_form_id' => $organization_form[0]->id,
                         'subgroup_id' => $subgroup[0]->id,
                         'group_id' => $group[0]->id,

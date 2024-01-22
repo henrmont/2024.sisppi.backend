@@ -10,7 +10,7 @@ class ExerciseYear extends Model
     use HasFactory;
 
     protected $fillable = [
-        'exercise_year',
+        'name',
         'is_valid',
         'deleted_at',
     ];

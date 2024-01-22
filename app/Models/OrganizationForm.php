@@ -11,8 +11,8 @@ class OrganizationForm extends Model
     use HasFactory;
 
     protected $fillable = [
-        'organization_form_code',
-        'organization_form_name',
+        'code',
+        'name',
         'subgroup_id',
         'group_id',
         'competence_id',

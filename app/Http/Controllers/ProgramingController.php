@@ -46,7 +46,7 @@ class ProgramingController extends Controller
             DB::beginTransaction();
 
             $programing = Programing::create([
-                'programing_name'  => $request->programing_name,
+                'name'  => $request->programing_name,
                 'exercise_year_id' => $request->exercise_year_id,
                 'county_id'  => auth()->user()->county_id,
             ]);
@@ -54,7 +54,7 @@ class ProgramingController extends Controller
             Notification::create([
                 'user_id'   => auth()->user()->id,
                 'title' => 'Inclusão da programação',
-                'content'   => 'A programação '.$programing->programing_name.' foi criada com sucesso.',
+                'content'   => 'A programação '.$programing->name.' foi criada com sucesso.',
             ]);
 
             DB::commit();
@@ -76,14 +76,14 @@ class ProgramingController extends Controller
             DB::beginTransaction();
 
             $programing = Programing::find($request->id);
-            $programing->programing_name = $request->programing_name;
+            $programing->name = $request->name;
             $programing->updated_at = now();
             $programing->save();
 
             Notification::create([
                 'user_id'   => auth()->user()->id,
                 'title' => 'Atualização da programação',
-                'content'   => 'A programação '.$programing->programing_name.' foi atualizada com sucesso.',
+                'content'   => 'A programação '.$programing->name.' foi atualizada com sucesso.',
             ]);
 
             DB::commit();
@@ -113,7 +113,7 @@ class ProgramingController extends Controller
             Notification::create([
                 'user_id'   => auth()->user()->id,
                 'title' => 'Exclusão da programação',
-                'content'   => 'A programação '.$programing->programing_name.' foi excluída com sucesso.',
+                'content'   => 'A programação '.$programing->name.' foi excluída com sucesso.',
             ]);
 
             DB::commit();
@@ -142,7 +142,7 @@ class ProgramingController extends Controller
             Notification::create([
                 'user_id'   => auth()->user()->id,
                 'title' => 'Validação da programação',
-                'content'   => 'A programação '.$programing->programing_name.' foi validada/invalidada com sucesso.',
+                'content'   => 'A programação '.$programing->name.' foi validada/invalidada com sucesso.',
             ]);
 
             DB::commit();

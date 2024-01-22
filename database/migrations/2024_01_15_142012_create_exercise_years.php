@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('exercise_years', function (Blueprint $table) {
             $table->id();
-            $table->integer('exercise_year')->unique();
+            $table->integer('name')->unique();
             $table->boolean('is_valid')->default(true);
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();

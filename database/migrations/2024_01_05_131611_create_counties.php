@@ -25,6 +25,8 @@ return new class extends Migration
             $table->string('distance_from_pole_municipality');
             $table->string('distance_from_the_capital');
             $table->string('img_map');
+            $table->boolean('is_valid')->default(true);
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }

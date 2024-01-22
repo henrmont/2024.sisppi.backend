@@ -49,10 +49,12 @@ Route::group(['middleware' => 'api', 'prefix' => 'account', 'namespace' => 'App\
 
 });
 
-Route::group(['middleware' => 'api', 'prefix' => 'favorite', 'namespace' => 'App\Http\Controllers'], function ($router) {
+Route::group(['middleware' => 'api', 'prefix' => 'favorites', 'namespace' => 'App\Http\Controllers'], function ($router) {
 
-    Route::get('get/{id}', [FavoriteController::class, 'getFavorites']);
-    Route::post('create', [FavoriteController::class, 'createFavorite']);
+    Route::get('get', [FavoriteController::class, 'getFavorites']);
+    Route::get('check/{id}', [FavoriteController::class, 'checkFavorite']);
+    Route::get('add/{id}', [FavoriteController::class, 'addFavorite']);
+    Route::get('remove/{id}', [FavoriteController::class, 'removeFavorite']);
 
 });
 
@@ -80,6 +82,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'users', 'namespace' => 'App\Ht
     Route::get('get/user/roles/{id}', [UserController::class, 'getUserRoles']);
     Route::post('create/user', [UserController::class, 'createUser']);
     Route::patch('update/user', [UserController::class, 'updateUser']);
+    Route::get('validate/user/{id}', [UserController::class, 'validateUser']);
     Route::delete('delete/user/{id}', [UserController::class, 'deleteUser']);
     Route::get('get/empty/manager', [UserController::class, 'getEmptyManagerUsers']);
     Route::get('change/empty/manager/{id}', [UserController::class, 'changeEmptyManagerUser']);

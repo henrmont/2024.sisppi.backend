@@ -15,7 +15,7 @@ class ProgramingSeeder extends Seeder
     {
         for ($i = 0; $i < 5; $i++) {
             $programing = Programing::create([
-                'programing_name' => fake()->name(),
+                'name' => fake()->name(),
                 'exercise_year_id' => 1,
                 'county_id' => 1,
                 'created_at'=> now(),
@@ -25,7 +25,7 @@ class ProgramingSeeder extends Seeder
 
         for ($i = 0; $i < 50; $i++) {
             $programing = Programing::create([
-                'programing_name' => fake()->name(),
+                'name' => fake()->name(),
                 'exercise_year_id' => 1,
                 'county_id' => rand(2,142),
                 'created_at'=> now(),

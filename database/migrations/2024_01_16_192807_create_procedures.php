@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('procedures', function (Blueprint $table) {
             $table->id();
-            $table->string('procedure_code');
-            $table->string('procedure_name');
+            $table->string('code');
+            $table->string('name');
             $table->integer('organization_form_id');
             $table->integer('subgroup_id');
             $table->integer('group_id');
