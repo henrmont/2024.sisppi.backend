@@ -17,20 +17,6 @@ class LinkSeeder extends Seeder
         DB::table('links')->insert(
             [
                 [
-                    'name'      => 'Dashboard',
-                    'icon'      => 'dashboard',
-                    'url'       => '/dashboard',
-                    'created_at'=> now(),
-                    'updated_at'=> now()
-                ],
-                [
-                    'name'      => 'Configurações',
-                    'icon'      => 'tune',
-                    'url'       => '/configuracoes',
-                    'created_at'=> now(),
-                    'updated_at'=> now()
-                ],
-                [
                     'name'      => 'Usuários',
                     'icon'      => 'groups',
                     'url'       => '/usuarios',
@@ -59,13 +45,6 @@ class LinkSeeder extends Seeder
                     'updated_at'=> now()
                 ],
                 [
-                    'name'      => 'Procedimentos',
-                    'icon'      => 'medical_services',
-                    'url'       => '/procedimentos',
-                    'created_at'=> now(),
-                    'updated_at'=> now()
-                ],
-                [
                     'name'      => 'Grupos, Subgrupos e Formas de organização',
                     'icon'      => 'format_list_numbered',
                     'url'       => '/grupos',
@@ -76,6 +55,13 @@ class LinkSeeder extends Seeder
                     'name'      => 'Financiamentos e Modalidades',
                     'icon'      => 'attach_money',
                     'url'       => '/financiamentos/modalidades',
+                    'created_at'=> now(),
+                    'updated_at'=> now()
+                ],
+                [
+                    'name'      => 'Procedimentos',
+                    'icon'      => 'medical_services',
+                    'url'       => '/procedimentos',
                     'created_at'=> now(),
                     'updated_at'=> now()
                 ],
