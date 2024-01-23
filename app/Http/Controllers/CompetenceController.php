@@ -20,6 +20,16 @@ class CompetenceController extends Controller
 
     }
 
+    public function getValidCompetencies(): JsonResponse {
+
+        $competencies = Competence::where('deleted_at',null)->where('is_valid',true)->orderBy('id', 'asc')->get(['id','name','is_valid']);
+
+        return response()->json([
+            "data" => $competencies
+        ]);
+
+    }
+
     public function deleteCompetence($id): JsonResponse {
         try {
             DB::beginTransaction();

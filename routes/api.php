@@ -9,6 +9,7 @@ use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\FinancingController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\LinkController;
+use App\Http\Controllers\MinisterialOrdinaceController;
 use App\Http\Controllers\ModalityController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OrganizationFormController;
@@ -131,6 +132,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'exercise/years', 'namespace' =
 Route::group(['middleware' => 'api', 'prefix' => 'competencies', 'namespace' => 'App\Http\Controllers'], function ($router) {
 
     Route::get('get/competencies', [CompetenceController::class, 'getCompetencies']);
+    Route::get('get/valid/competencies', [CompetenceController::class, 'getValidCompetencies']);
     Route::delete('delete/competence/{id}', [CompetenceController::class, 'deleteCompetence']);
     Route::get('validate/competence/{id}', [CompetenceController::class, 'validateCompetence']);
 
@@ -190,6 +192,17 @@ Route::group(['middleware' => 'api', 'prefix' => 'programing/procedures', 'names
     Route::patch('amount/programing/procedure', [ProgramingProcedureController::class, 'amountProgramingProcedure']);
     Route::patch('type/programing/procedure', [ProgramingProcedureController::class, 'typeProgramingProcedure']);
     Route::delete('remove/programing/procedure/{id}', [ProgramingProcedureController::class, 'removeProgramingProcedure']);
+
+});
+
+Route::group(['middleware' => 'api', 'prefix' => 'ministerial/ordinaces', 'namespace' => 'App\Http\Controllers'], function ($router) {
+
+    Route::get('get/ministerial/ordinaces', [MinisterialOrdinaceController::class, 'getMinisterialOrdinaces']);
+    Route::post('create/ministerial/ordinace', [MinisterialOrdinaceController::class, 'createMinisterialOrdinace']);
+    Route::patch('update/ministerial/ordinace', [MinisterialOrdinaceController::class, 'updateMinisterialOrdinace']);
+    Route::delete('delete/ministerial/ordinace/{id}', [MinisterialOrdinaceController::class, 'deleteMinisterialOrdinace']);
+    Route::get('validate/ministerial/ordinace/{id}', [MinisterialOrdinaceController::class, 'validateMinisterialOrdinace']);
+    Route::patch('attach/ministerial/ordinace', [MinisterialOrdinaceController::class, 'attachMinisterialOrdinace']);
 
 });
 

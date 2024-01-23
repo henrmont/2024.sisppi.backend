@@ -55,6 +55,10 @@ class RolesAndPermissionsSeeder extends Seeder
                 'programacao ver',
                 'programacao atualizar',
                 'programacao deletar',
+                'portaria criar',
+                'portaria ver',
+                'portaria atualizar',
+                'portaria deletar',
             ];
 
             foreach($permissions as $vlr) {

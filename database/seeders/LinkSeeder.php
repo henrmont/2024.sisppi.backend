@@ -71,6 +71,13 @@ class LinkSeeder extends Seeder
                     'url'       => '/programacao',
                     'created_at'=> now(),
                     'updated_at'=> now()
+                ],
+                [
+                    'name'      => 'Portarias ministeriais',
+                    'icon'      => 'request_page',
+                    'url'       => '/portarias/ministeriais',
+                    'created_at'=> now(),
+                    'updated_at'=> now()
                 ]
             ]
         );
