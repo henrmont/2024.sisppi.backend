@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\County;
+use App\Models\MinisterialOrdinace;
 use App\Models\Notification;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -139,5 +140,32 @@ class CountyController extends Controller
                 "message" => 'Erro no sistema.'
             ]);
         }
+    }
+
+    public function getCountiesWithoutMinisterialOrdinace($id): JsonResponse {
+
+        $ministerial_ordinace = MinisterialOrdinace::with(['ministerial_ordinace_destinations'])->find($id);
+        $allCounties = County::all();
+        $counties = [];
+
+        foreach ($allCounties as $chv => $vlr) {
+            $perm = true;
+            foreach ($ministerial_ordinace->ministerial_ordinace_destinations as $item) {
+                if ($vlr['id'] == $item['county_id']) {
+                    $perm = false;
+                }
+            }
+
+            if ($perm) {
+                $counties[$chv] = $vlr;
+            }
+        }
+
+        $counties = array_values($counties);
+
+        return response()->json([
+            "data" => $counties
+        ]);
+
     }
 }

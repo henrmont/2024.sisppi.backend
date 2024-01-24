@@ -53,6 +53,7 @@ class DatabaseSeeder extends Seeder
             ProgramingSeeder::class,
             ProgramingProcedureSeeder::class,
             MinisterialOrdinaceSeeder::class,
+            MinisterialOrdinaceDestinationSeeder::class,
         ]);
 
         $role = Role::findByName('admin');

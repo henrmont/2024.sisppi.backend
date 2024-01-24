@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class MinisterialOrdinace extends Model
 {
@@ -32,5 +33,10 @@ class MinisterialOrdinace extends Model
     public function competence(): BelongsTo
     {
         return $this->belongsTo(Competence::class, 'competence_id', 'id');
+    }
+
+    public function ministerial_ordinace_destinations(): HasMany
+    {
+        return $this->hasMany(MinisterialOrdinaceDestination::class, 'ministerial_ordinace_id', 'id');
     }
 }

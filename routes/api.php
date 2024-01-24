@@ -10,6 +10,7 @@ use App\Http\Controllers\FinancingController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\LinkController;
 use App\Http\Controllers\MinisterialOrdinaceController;
+use App\Http\Controllers\MinisterialOrdinaceDestinationController;
 use App\Http\Controllers\ModalityController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OrganizationFormController;
@@ -95,6 +96,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'counties', 'namespace' => 'App
 
     Route::get('get/counties', [CountyController::class, 'getCounties']);
     Route::get('get/county/{id}', [CountyController::class, 'getCounty']);
+    Route::get('get/counties/without/ministerial/ordinace/{id}', [CountyController::class, 'getCountiesWithoutMinisterialOrdinace']);
     Route::post('create/county', [CountyController::class, 'createCounty']);
     Route::delete('delete/county/{id}', [CountyController::class, 'deleteCounty']);
     Route::patch('update/county', [CountyController::class, 'updateCounty']);
@@ -203,6 +205,15 @@ Route::group(['middleware' => 'api', 'prefix' => 'ministerial/ordinaces', 'names
     Route::delete('delete/ministerial/ordinace/{id}', [MinisterialOrdinaceController::class, 'deleteMinisterialOrdinace']);
     Route::get('validate/ministerial/ordinace/{id}', [MinisterialOrdinaceController::class, 'validateMinisterialOrdinace']);
     Route::patch('attach/ministerial/ordinace', [MinisterialOrdinaceController::class, 'attachMinisterialOrdinace']);
+
+});
+
+Route::group(['middleware' => 'api', 'prefix' => 'ministerial/ordinace/destinations', 'namespace' => 'App\Http\Controllers'], function ($router) {
+
+    Route::get('get/ministerial/ordinace/destinations/{id}', [MinisterialOrdinaceDestinationController::class, 'getMinisterialOrdinaceDestinations']);
+    Route::post('add/ministerial/ordinace/destination', [MinisterialOrdinaceDestinationController::class, 'addMinisterialOrdinaceDestination']);
+    Route::patch('value/ministerial/ordinace/destination', [MinisterialOrdinaceDestinationController::class, 'valueMinisterialOrdinaceDestination']);
+    Route::delete('remove/ministerial/ordinace/destination/{id}', [MinisterialOrdinaceDestinationController::class, 'removeMinisterialOrdinaceDestination']);
 
 });
 
