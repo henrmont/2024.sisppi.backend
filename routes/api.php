@@ -8,6 +8,8 @@ use App\Http\Controllers\ExerciseYearController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\FinancingController;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\IncentiveController;
+use App\Http\Controllers\IncentiveDestinationController;
 use App\Http\Controllers\LinkController;
 use App\Http\Controllers\MinisterialOrdinaceController;
 use App\Http\Controllers\MinisterialOrdinaceDestinationController;
@@ -97,6 +99,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'counties', 'namespace' => 'App
     Route::get('get/counties', [CountyController::class, 'getCounties']);
     Route::get('get/county/{id}', [CountyController::class, 'getCounty']);
     Route::get('get/counties/without/ministerial/ordinace/{id}', [CountyController::class, 'getCountiesWithoutMinisterialOrdinace']);
+    Route::get('get/counties/without/incentive/{id}', [CountyController::class, 'getCountiesWithoutIncentive']);
     Route::post('create/county', [CountyController::class, 'createCounty']);
     Route::delete('delete/county/{id}', [CountyController::class, 'deleteCounty']);
     Route::patch('update/county', [CountyController::class, 'updateCounty']);
@@ -214,6 +217,26 @@ Route::group(['middleware' => 'api', 'prefix' => 'ministerial/ordinace/destinati
     Route::post('add/ministerial/ordinace/destination', [MinisterialOrdinaceDestinationController::class, 'addMinisterialOrdinaceDestination']);
     Route::patch('value/ministerial/ordinace/destination', [MinisterialOrdinaceDestinationController::class, 'valueMinisterialOrdinaceDestination']);
     Route::delete('remove/ministerial/ordinace/destination/{id}', [MinisterialOrdinaceDestinationController::class, 'removeMinisterialOrdinaceDestination']);
+
+});
+
+Route::group(['middleware' => 'api', 'prefix' => 'incentives', 'namespace' => 'App\Http\Controllers'], function ($router) {
+
+    Route::get('get/incentives', [IncentiveController::class, 'getIncentives']);
+    Route::post('create/incentive', [IncentiveController::class, 'createIncentive']);
+    Route::patch('update/incentive', [IncentiveController::class, 'updateIncentive']);
+    Route::delete('delete/incentive/{id}', [IncentiveController::class, 'deleteIncentive']);
+    Route::get('validate/incentive/{id}', [IncentiveController::class, 'validateIncentive']);
+    Route::patch('attach/incentive', [IncentiveController::class, 'attachIncentive']);
+
+});
+
+Route::group(['middleware' => 'api', 'prefix' => 'incentive/destinations', 'namespace' => 'App\Http\Controllers'], function ($router) {
+
+    Route::get('get/incentive/destinations/{id}', [IncentiveDestinationController::class, 'getIncentiveDestinations']);
+    Route::post('add/incentive/destination', [IncentiveDestinationController::class, 'addIncentiveDestination']);
+    Route::patch('value/incentive/destination', [IncentiveDestinationController::class, 'valueIncentiveDestination']);
+    Route::delete('remove/incentive/destination/{id}', [IncentiveDestinationController::class, 'removeIncentiveDestination']);
 
 });
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\County;
+use App\Models\Incentive;
 use App\Models\MinisterialOrdinace;
 use App\Models\Notification;
 use Illuminate\Http\JsonResponse;
@@ -151,6 +152,33 @@ class CountyController extends Controller
         foreach ($allCounties as $chv => $vlr) {
             $perm = true;
             foreach ($ministerial_ordinace->ministerial_ordinace_destinations as $item) {
+                if ($vlr['id'] == $item['county_id']) {
+                    $perm = false;
+                }
+            }
+
+            if ($perm) {
+                $counties[$chv] = $vlr;
+            }
+        }
+
+        $counties = array_values($counties);
+
+        return response()->json([
+            "data" => $counties
+        ]);
+
+    }
+
+    public function getCountiesWithoutIncentive($id): JsonResponse {
+
+        $incentive = Incentive::with(['incentive_destinations'])->find($id);
+        $allCounties = County::all();
+        $counties = [];
+
+        foreach ($allCounties as $chv => $vlr) {
+            $perm = true;
+            foreach ($incentive->incentive_destinations as $item) {
                 if ($vlr['id'] == $item['county_id']) {
                     $perm = false;
                 }

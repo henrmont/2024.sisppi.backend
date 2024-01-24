@@ -54,6 +54,8 @@ class DatabaseSeeder extends Seeder
             ProgramingProcedureSeeder::class,
             MinisterialOrdinaceSeeder::class,
             MinisterialOrdinaceDestinationSeeder::class,
+            IncentiveSeeder::class,
+            IncentiveDestinationSeeder::class,
         ]);
 
         $role = Role::findByName('admin');

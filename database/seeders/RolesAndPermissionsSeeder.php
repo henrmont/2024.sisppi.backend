@@ -59,6 +59,10 @@ class RolesAndPermissionsSeeder extends Seeder
                 'portaria ver',
                 'portaria atualizar',
                 'portaria deletar',
+                'incentivo criar',
+                'incentivo ver',
+                'incentivo atualizar',
+                'incentivo deletar',
             ];
 
             foreach($permissions as $vlr) {
