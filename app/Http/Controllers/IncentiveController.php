@@ -27,6 +27,16 @@ class IncentiveController extends Controller
 
     }
 
+    public function getIncentive($id): JsonResponse {
+
+        $incentive = Incentive::find($id);
+
+        return response()->json([
+            "data" => $incentive
+        ]);
+
+    }
+
     public function createIncentive(Request $request): JsonResponse {
         try {
             DB::beginTransaction();

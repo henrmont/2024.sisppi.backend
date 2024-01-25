@@ -27,6 +27,16 @@ class MinisterialOrdinaceController extends Controller
 
     }
 
+    public function getMinisterialOrdinace($id): JsonResponse {
+
+        $ministerial_ordinace = MinisterialOrdinace::find($id);
+
+        return response()->json([
+            "data" => $ministerial_ordinace
+        ]);
+
+    }
+
     public function createMinisterialOrdinace(Request $request): JsonResponse {
         try {
             DB::beginTransaction();

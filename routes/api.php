@@ -127,6 +127,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'exercise/years', 'namespace' =
 
     Route::get('get/exercise/years', [ExerciseYearController::class, 'getExerciseYears']);
     Route::get('get/valid/exercise/years', [ExerciseYearController::class, 'getValidExerciseYears']);
+    Route::get('get/wallet/exercise/years', [ExerciseYearController::class, 'getWalletExerciseYears']);
     Route::post('create/exercise/year', [ExerciseYearController::class, 'createExerciseYear']);
     Route::patch('update/exercise/year', [ExerciseYearController::class, 'updateExerciseYear']);
     Route::delete('delete/exercise/year/{id}', [ExerciseYearController::class, 'deleteExerciseYear']);
@@ -203,6 +204,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'programing/procedures', 'names
 Route::group(['middleware' => 'api', 'prefix' => 'ministerial/ordinaces', 'namespace' => 'App\Http\Controllers'], function ($router) {
 
     Route::get('get/ministerial/ordinaces', [MinisterialOrdinaceController::class, 'getMinisterialOrdinaces']);
+    Route::get('get/ministerial/ordinace/{id}', [MinisterialOrdinaceController::class, 'getMinisterialOrdinace']);
     Route::post('create/ministerial/ordinace', [MinisterialOrdinaceController::class, 'createMinisterialOrdinace']);
     Route::patch('update/ministerial/ordinace', [MinisterialOrdinaceController::class, 'updateMinisterialOrdinace']);
     Route::delete('delete/ministerial/ordinace/{id}', [MinisterialOrdinaceController::class, 'deleteMinisterialOrdinace']);
@@ -223,6 +225,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'ministerial/ordinace/destinati
 Route::group(['middleware' => 'api', 'prefix' => 'incentives', 'namespace' => 'App\Http\Controllers'], function ($router) {
 
     Route::get('get/incentives', [IncentiveController::class, 'getIncentives']);
+    Route::get('get/incentive/{id}', [IncentiveController::class, 'getIncentive']);
     Route::post('create/incentive', [IncentiveController::class, 'createIncentive']);
     Route::patch('update/incentive', [IncentiveController::class, 'updateIncentive']);
     Route::delete('delete/incentive/{id}', [IncentiveController::class, 'deleteIncentive']);

@@ -85,6 +85,13 @@ class LinkSeeder extends Seeder
                     'url'       => '/incentivos',
                     'created_at'=> now(),
                     'updated_at'=> now()
+                ],
+                [
+                    'name'      => 'Carteira financeira',
+                    'icon'      => 'wallet',
+                    'url'       => '/carteira',
+                    'created_at'=> now(),
+                    'updated_at'=> now()
                 ]
             ]
         );

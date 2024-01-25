@@ -30,6 +30,64 @@ class ExerciseYearController extends Controller
 
     }
 
+    public function getWalletExerciseYears(): JsonResponse {
+
+        $data = [];
+        $exercise_years = ExerciseYear::with(['ministerial_ordinaces.ministerial_ordinace_destinations','incentives.incentive_destinations'])->where('deleted_at',null)->where('is_valid',true)->orderBy('id', 'asc')->get();
+
+        foreach ($exercise_years as $chv => $vlr) {
+            array_push($data, ["name" => $vlr->name, "data" => [], "total" => 0]);
+            foreach ($vlr->ministerial_ordinaces as $item) {
+                foreach ($item->ministerial_ordinace_destinations as $res) {
+                    if ($res->county_id == auth()->user()->county_id) {
+                        $ministerial_ordinace_item = [
+                            "id" => $item->id,
+                            "date" => $item->date,
+                            "type" => $item->type,
+                            "name" => $item->name,
+                            "title" => 'Portaria ministerial',
+                            "value" => $res->value,
+                            "hasFile" => $item->file ? false : true
+                        ];
+                        array_push($data[$chv]["data"], $ministerial_ordinace_item);
+                        if ($item->type == 'acrescimo') {
+                            $data[$chv]["total"] += $res->value;
+                        } else {
+                            $data[$chv]["total"] -= $res->value;
+                        }
+                    }
+                }
+            }
+
+            foreach ($vlr->incentives as $item) {
+                foreach ($item->incentive_destinations as $res) {
+                    if ($res->county_id == auth()->user()->county_id) {
+                        $incentive_item = [
+                            "id" => $item->id,
+                            "date" => $item->date,
+                            "type" => $item->type,
+                            "name" => $item->name,
+                            "title" => 'Incentivo',
+                            "value" => $res->value,
+                            "hasFile" => $item->file ? false : true
+                        ];
+                        array_push($data[$chv]["data"], $incentive_item);
+                        if ($item->type == 'acrescimo') {
+                            $data[$chv]["total"] += $res->value;
+                        } else {
+                            $data[$chv]["total"] -= $res->value;
+                        }
+                    }
+                }
+            }
+        }
+
+        return response()->json([
+            "data" => $data,
+        ]);
+
+    }
+
     public function createExerciseYear(Request $request): JsonResponse {
         try {
             DB::beginTransaction();
