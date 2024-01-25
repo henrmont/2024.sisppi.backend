@@ -21,7 +21,6 @@ class DatabaseSeeder extends Seeder
             'cell_phone' =>'65999520849',
             'phone' => '6530255588',
             'cpf'   => '80104010215',
-            'county_id' => 1,
             'email' => 'jorge@teste.com',
             'email_verified_at' => now(),
             'created_at' => now(),
