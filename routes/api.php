@@ -91,6 +91,9 @@ Route::group(['middleware' => 'api', 'prefix' => 'users', 'namespace' => 'App\Ht
     Route::get('get/empty/manager', [UserController::class, 'getEmptyManagerUsers']);
     Route::get('change/empty/manager/{id}', [UserController::class, 'changeEmptyManagerUser']);
     Route::post('change/no/empty/manager', [UserController::class, 'changeNoEmptyManagerUser']);
+    Route::patch('update/profile', [UserController::class, 'updateProfile']);
+    Route::patch('change/password', [UserController::class, 'changePassword']);
+    Route::patch('change/image/profile', [UserController::class, 'changeImageProfile']);
 
 });
 

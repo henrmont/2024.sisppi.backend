@@ -338,4 +338,93 @@ class UserController extends Controller
             ]);
         }
     }
+
+    public function updateProfile(Request $request): JsonResponse {
+        try {
+            DB::beginTransaction();
+
+            $user = User::find($request->id);
+            $user->name = $request->name;
+            $user->phone = $request->phone;
+            $user->cell_phone = $request->cell_phone;
+            $user->updated_at = now();
+            $user->save();
+
+            Notification::create([
+                'user_id'   => auth()->user()->id,
+                'title' => 'Atualização de perfil',
+                'content'   => 'O perfil foi atualizado com sucesso.',
+            ]);
+
+            DB::commit();
+
+            return response()->json([
+                "message" => 'Perfil atualizado com sucesso.'
+            ]);
+        } catch(\Exception $e) {
+            DB::rollBack();
+
+            return response()->json([
+                "message" => 'Erro no sistema.'
+            ]);
+        }
+    }
+
+    public function changePassword(Request $request): JsonResponse {
+        try {
+            DB::beginTransaction();
+
+            $user = User::find($request->id);
+            $user->password = $request->password;
+            $user->updated_at = now();
+            $user->save();
+
+            Notification::create([
+                'user_id'   => auth()->user()->id,
+                'title' => 'Senha Atualizada',
+                'content'   => 'A senha foi atualizada com sucesso.',
+            ]);
+
+            DB::commit();
+
+            return response()->json([
+                "message" => 'Senha atualizada com sucesso.'
+            ]);
+        } catch(\Exception $e) {
+            DB::rollBack();
+
+            return response()->json([
+                "message" => 'Erro no sistema.'
+            ]);
+        }
+    }
+
+    public function changeImageProfile(Request $request): JsonResponse {
+        try {
+            DB::beginTransaction();
+
+            $user = User::find($request->id);
+            $user->image = $request->image;
+            $user->updated_at = now();
+            $user->save();
+
+            Notification::create([
+                'user_id'   => auth()->user()->id,
+                'title' => 'Foto do perfil atualizada',
+                'content'   => 'A foto do perfil foi atualizada com sucesso.',
+            ]);
+
+            DB::commit();
+
+            return response()->json([
+                "message" => 'Foto do perfil atualizada com sucesso.'
+            ]);
+        } catch(\Exception $e) {
+            DB::rollBack();
+
+            return response()->json([
+                "message" => 'Erro no sistema.'
+            ]);
+        }
+    }
 }
